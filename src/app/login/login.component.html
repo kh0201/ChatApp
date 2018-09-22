@@ -1,0 +1,13 @@
+<h1>Login</h1>
+<div>
+ID <input #idInputBox/>
+</div>
+<div>
+PW <input type="password" #pwInputBox/>
+</div>
+
+<button (click)="LoginRpt(idInputBox.value, pwInputBox.value); idInputBox.value=''; pwInputBox.value=''">Login</button>
+
+<button (click)="RegisterRpt(idInputBox.value, pwInputBox.value); idInputBox.value=''; pwInputBox.value=''">Register</button>
+
+<app-root></app-root>
