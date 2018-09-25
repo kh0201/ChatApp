@@ -43,13 +43,19 @@ io.on('connection', function(socket)
             if(error == null &&  findAccountInfo != null)
             {
                 findAccountInfo.log.push(msg);
+                if(findAccountInfo.log.length > 30)
+                {
+                    findAccountInfo.log.shift();
+                }
+
                 findAccountInfo.save(function(error, data){
                     if(error){
                         console.log(error);
                     }else{
                         console.log('Saved!')
                     }
-                });                
+                });
+
             }
         });
     });
@@ -58,7 +64,7 @@ io.on('connection', function(socket)
 io.on('connection', function(socket)
 {
   socket.on('loginRpt', function(id, pw){
-    console.log('loginRpt: ' + id + pw);
+    console.log('loginRpt: ' + id + ' / '+ pw);
 	io.emit('message', 'loginRpt: ' + id);    
     AccountInfo.findOne({id: id, password: pw}, function(error, findAccountInfo)
     {
