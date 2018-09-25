@@ -1,1 +1,4 @@
-<h1>Chat</h1>
+<h1>Chat Application</h1>
+<input #chatBox/>
+<button (click)="sendMessage(chatBox.value); chatBox.value=''">Send Message</button>
+<div *ngFor='let message of messages'> {{message}} </div>

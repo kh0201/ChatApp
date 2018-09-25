@@ -4,6 +4,7 @@ import { Observable} from 'rxjs/Observable';
 import * as Rx from 'rxjs/Rx';
 import {environment} from '../environments/environment';
 import {loginInfo} from './loginInfo';
+import { chatInfo } from './chatInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,9 @@ export class WebSocketService {
 	  
 		let registerObserver = {
 			next: (info: loginInfo)=> {
-			  this.socket.emit('registerRpt', JSON.stringify(info.id_), JSON.stringify(info.pw_));
+			  this.socket.emit('registerRpt', JSON.stringify(info.id_), JSON.stringify(info.pw_),
+			  JSON.stringify(info.name_), JSON.stringify(info.email_), JSON.stringify(info.comment_), JSON.stringify(info.phone_)
+			  );
 			}
 		};
 	  
@@ -69,8 +72,9 @@ export class WebSocketService {
 	  })
 	  
 	  let observer = {
-		  next: (data: Object)=> {
-			  this.socket.emit('message', JSON.stringify(data));
+		  next: (data: chatInfo)=> {
+			  console.log(data);
+			  this.socket.emit('message', data.id_, data.msg_);
 		  },		
 	  };
 	  

@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { ChatService} from './chat.service';
 import { LoginService} from './login.service';
 import { WebSocketService } from './web-socket.service';
+import { AuthGuard } from './auth.guard';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ApproutingModule} from './approuting/approuting.module';
-import { ChatComponent } from './chat/chat.component'
+import { ChatComponent } from './chat/chat.component';
+
 
 @NgModule({
   declarations: [
@@ -22,8 +24,9 @@ import { ChatComponent } from './chat/chat.component'
   providers: [
 	ChatService,
 	LoginService,
-	WebSocketService
+  WebSocketService,
+  AuthGuard
   ],
-  bootstrap: [LoginComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,10 @@
-<h1>Our Socket.io Application</h1>
-<input #chatBox/>
-<button (click)="sendMessage(chatBox.value); chatBox.value=''">Send Message</button>
-<div *ngFor='let message of messages'> {{message}} </div>
+<div style="text-align:center">
+<h1>{{title}}</h1>
+<!--<nav>
+	<a routerLink="/login">login</a>
+</nav>
+<nav>
+  <a routerLink="/chat">chat</a>
+</nav>  -->
+<router-outlet></router-outlet>
+<!--<app-login></app-login>-->
