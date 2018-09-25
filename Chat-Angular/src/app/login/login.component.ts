@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 import {LoginService} from '../login.service';
+
 
 @Component({
   selector: 'app-login',
@@ -8,14 +10,36 @@ import {LoginService} from '../login.service';
 })
 export class LoginComponent implements OnInit {
 
-	constructor(private login: LoginService) { }
+	constructor(private login: LoginService, private router: Router) { 
+	}
 
 	ngOnInit() {
 		this.login.loginMessages_.subscribe(msg => {
-			console.log("subscribe msg" + msg);
+			if(msg == 'Succeed')
+			{
+				this.login.SetLoggedIn(true);
+				this.router.navigate(['/chat']);
+				// 주소 이동 /chat 으로
+				console.log("subscribe msg " + msg);
+			}
+			else if(msg == 'Fail')
+			{
+				// 실패 메시지 박스 출력?
+				console.log("subscribe msg " + msg);
+			}
+			
 	})
 		this.login.registerMessages_.subscribe(msg => {
-			console.log("subscribe msg" + msg);
+			if(msg == 'Succeed')
+			{
+				// 성공 메시지 박스 출력?
+			}
+			else if(msg == 'Fail')
+			{
+				// 실패 메시지 박스 출력?
+			}
+			
+			console.log("subscribe msg " + msg);
 	})
 	}
 
@@ -25,9 +49,9 @@ export class LoginComponent implements OnInit {
 		this.login.LoginRpt(id, pw);
 	}
 	
-	RegisterRpt(id: string, pw: string)
+	RegisterRpt(id: string, pw: string, name: string, email: string, comment: string, phone: number)
 	{
 		console.log("RegisterRpt!");
-		this.login.RegisterRpt(id, pw);
+		this.login.RegisterRpt(id, pw, name, email, comment, phone);
 	}
 }

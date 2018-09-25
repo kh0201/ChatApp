@@ -1,13 +1,11 @@
 <h1>Login</h1>
-<div>
-ID <input #idInputBox/>
-</div>
-<div>
-PW <input type="password" #pwInputBox/>
-</div>
+<div>ID     <input #idInputBox/></div>
+<div>PW     <input type="password" #pwInputBox/></div>
+<div>Name   <input #nameInputBox/></div>
+<div>Email  <input type="email" #emailInputBox/></div>
+<div>Comment<input #commentInputBox/></div>
+<div>Phone  <input type="tel" #phoneInputBox/></div>
 
 <button (click)="LoginRpt(idInputBox.value, pwInputBox.value); idInputBox.value=''; pwInputBox.value=''">Login</button>
-
-<button (click)="RegisterRpt(idInputBox.value, pwInputBox.value); idInputBox.value=''; pwInputBox.value=''">Register</button>
-
-<app-root></app-root>
+<button (click)="RegisterRpt(idInputBox.value, pwInputBox.value, nameInputBox.value, emailInputBox.value, commentInputBox.value, phoneInputBox.value); 
+idInputBox.value=''; pwInputBox.value=''; nameInputBox.value=''; emailInputBox.value=''; commentInputBox.value=''; phoneInputBox.value='';">Register</button>
