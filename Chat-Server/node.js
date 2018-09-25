@@ -17,15 +17,9 @@ db.on('error', function(){
 db.once('open', function() {
     console.log('Connected!');
 });
-var accountInfo = mongoose.Schema({
-    id : String,
-    password : String,
-    name : String,    
-    email : String,
-    comment : String,
-    log: [{type: String}]
-
-});
+var accountInfo = mongoose.Schema(
+    {id : String, password : String, name : String, email : String, comment : String, log : [String]}
+    );
 
 function arrayLimit(val) {
     return val.length <= 30;
@@ -44,8 +38,20 @@ io.on('connection', function(socket)
 
         console.log('message receivced from ' + id + ' :' + msg);
 
-        AccountInfo.findOneAndUpdate({id: id}, {$push: {log: msg}});
-
+        AccountInfo.findOne({id: id}, function(error, findAccountInfo)
+        {
+            if(error == null &&  findAccountInfo != null)
+            {
+                findAccountInfo.log.push(msg);
+                findAccountInfo.save(function(error, data){
+                    if(error){
+                        console.log(error);
+                    }else{
+                        console.log('Saved!')
+                    }
+                });                
+            }
+        });
     });
 });
 

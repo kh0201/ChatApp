@@ -28,7 +28,7 @@ export class WebSocketService {
 		let loginObserver = {
 		  
 			next: (info: loginInfo)=> {
-				this.socket.emit('loginRpt', JSON.stringify(info.id_), JSON.stringify(info.pw_));
+				this.socket.emit('loginRpt', (info.id_), (info.pw_));
 			}
 		};
 	  
@@ -48,8 +48,8 @@ export class WebSocketService {
 	  
 		let registerObserver = {
 			next: (info: loginInfo)=> {
-			  this.socket.emit('registerRpt', JSON.stringify(info.id_), JSON.stringify(info.pw_),
-			  JSON.stringify(info.name_), JSON.stringify(info.email_), JSON.stringify(info.comment_), JSON.stringify(info.phone_)
+			  this.socket.emit('registerRpt', (info.id_), (info.pw_),
+			  (info.name_), (info.email_), (info.comment_), (info.phone_)
 			  );
 			}
 		};
