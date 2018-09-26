@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ApproutingModule} from './approuting/approuting.module';
 import { ChatComponent } from './chat/chat.component';
+import { AccountinfoComponent } from './accountinfo/accountinfo.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ChatComponent
+    ChatComponent,
+    AccountinfoComponent
   ],
   imports: [
     BrowserModule,
