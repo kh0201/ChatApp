@@ -1,31 +1,49 @@
 <div>
-    <button (click)="goBack()">go back</button>
+  <button class="btn btn-default" (click)="goBack()">go back</button>
 </div>
-<div *ngIf="accountDetail">
+<form class="form-horizontal">
+  <div *ngIf="accountDetail">
+    <div class="col-sm-offset-2 col-sm-10">
+      <h2>{{accountDetail.id}}'s Details</h2>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <label for="name" class="col-sm-2 control-label">이름</label>
+        <input class="form-control" id="name" [(ngModel)]="accountDetail.name" [ngModelOptions]="{standalone: true}"
+          placeholder="name" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <label for="tel" class="col-sm-2 control-label">전화번호</label>
+        <input class="form-control" id="tel" [(ngModel)]="accountDetail.phone" [ngModelOptions]="{standalone: true}"
+          placeholder="phone" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <label for="email" class="col-sm-2 control-label">이메일</label>
+        <input class="form-control" id="email" [(ngModel)]="accountDetail.email" [ngModelOptions]="{standalone: true}"
+          placeholder="email" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <label for="comment" class="col-sm-2 control-label">오늘의 한마디</label>
+        <input class="form-control" id="comment" [(ngModel)]="accountDetail.comment" [ngModelOptions]="{standalone: true}"
+          placeholder="comment" />
+      </div>
+    </div>
 
-  <h2>{{accountDetail.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{accountDetail.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="accountDetail.name" placeholder="name" />
-    </label>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <label for="log" class="col-sm-2 control-label">대화 기록</label>
+        <a *ngFor="let log of accountDetail.log">
+          <div>
+            <label class="col-sm-2 control-label" id="log">{{log}} </label>
+          </div>
+        </a>
+      </div>
     </div>
-    <div>
-    <label>phone:
-      <input [(ngModel)]="accountDetail.phone" placeholder="phone" />
-    </label>
   </div>
-  <div>
-    <label>email:
-      <input [(ngModel)]="accountDetail.email" placeholder="email" />
-    </label>
-  </div>
-  <div>
-    <label>comment:
-      <input [(ngModel)]="accountDetail.comment" placeholder="comment" />
-    </label>
-    </div>
-    <a *ngFor="let log of accountDetail.log">
-      <div><label>{{log}} </label></div>
-    </a>
-  </div>
+</form>

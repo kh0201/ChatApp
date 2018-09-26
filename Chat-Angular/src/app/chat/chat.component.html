@@ -1,7 +1,13 @@
-<div>
+<div class="form-group">
     <a routerLink="/accountinfo">AccountInfo</a>
 </div>
-<h1>Chat Application</h1>
-<input #chatBox/>
-<button (click)="sendMessage(chatBox.value); chatBox.value=''">Send Message</button>
-<div *ngFor='let message of messages'> {{message}} </div>
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <h1>Chat Application</h1>
+    </div>
+</div>
+<form class="form-inline">
+    <input class="form-control" #chatBox/>
+    <button id="input" class="btn btn-default" (click)="sendMessage(chatBox.value); chatBox.value=''">Send Message</button>
+</form>
+<div class="form-group" *ngFor='let message of messages'> {{message}} </div>
