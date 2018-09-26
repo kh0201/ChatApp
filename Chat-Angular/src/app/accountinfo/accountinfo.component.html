@@ -9,16 +9,23 @@
     <label>name:
       <input [(ngModel)]="accountDetail.name" placeholder="name" />
     </label>
+    </div>
+    <div>
     <label>phone:
-      <input [(ngModel)]="accountDetail.phone" placeholder="name" />
+      <input [(ngModel)]="accountDetail.phone" placeholder="phone" />
     </label>
+  </div>
+  <div>
     <label>email:
-      <input [(ngModel)]="accountDetail.email" placeholder="name" />
+      <input [(ngModel)]="accountDetail.email" placeholder="email" />
     </label>
+  </div>
+  <div>
     <label>comment:
-      <input [(ngModel)]="accountDetail.comment" placeholder="name" />
+      <input [(ngModel)]="accountDetail.comment" placeholder="comment" />
     </label>
+    </div>
     <a *ngFor="let log of accountDetail.log">
-      <h4>{{log}}</h4>
+      <div><label>{{log}} </label></div>
     </a>
   </div>

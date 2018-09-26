@@ -19,16 +19,16 @@ export class WebSocketService {
 	  
 		let loginObservable = new Observable(loginObserver => {
 
-			this.socket.on('loginRpt', (id) => {
-				console.log("Received a loginRpt from websocket server");
-				loginObserver.next(id); })
+			this.socket.on('loginRes', (info) => {
+				console.log("Received a loginRes from websocket server");
+				loginObserver.next(info); })
 			return ()=>{ this.socket.disconnect();}
 		});
 	  
 		let loginObserver = {
 		  
 			next: (info: loginInfo)=> {
-				this.socket.emit('loginRpt', (info.id_), (info.pw_));
+				this.socket.emit('loginReq', (info.id_), (info.pw_));
 			}
 		};
 	  

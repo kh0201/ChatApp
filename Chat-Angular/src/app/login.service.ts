@@ -5,6 +5,7 @@ import { Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Rx';
 import {environment} from '../environments/environment';
 import {loginInfo} from './loginInfo';
+import { LoginResInfo } from './LoginResInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,17 @@ export class LoginService {
 	registerMessages_ : Subject<any>;
 	loggedIn : boolean;
 	ID : string;
+	loginResInfo : LoginResInfo;
+
+	GetLoginInfo()
+	{
+		console.log("GetLoginInfo");
+		return this.loginResInfo;
+	}
+	SetLoginInfo(info: LoginResInfo)
+	{
+		this.loginResInfo = info;
+	}
 
 	SetLoggedIn(flag: boolean)
 	{
@@ -43,9 +55,9 @@ export class LoginService {
 		
 	}
 	
-	LoginRpt(id, pw)
+	LoginReq(id, pw)
 	{
-		console.log("LoginRpt!!");
+		console.log("loginReq!!");
 		let info = new loginInfo;
 		info.id_ = id;
 		info.pw_ = pw;

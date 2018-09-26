@@ -18,7 +18,9 @@ db.once('open', function () {
     console.log('Connected!');
 });
 var accountInfo = mongoose.Schema(
-    { id: String, password: String, name: String, email: String, comment: String, log: [String] }
+    { id: String, password: String, name: String, email: String, comment: String,
+        phone: Number,
+        log: [String] }
 );
 
 // 정의된 스키마를 객체처럼 사용할 수 있도록 model() 함수로 컴파일
@@ -57,29 +59,30 @@ io.on('connection', function (socket) {
 });
 
 io.on('connection', function (socket) {
-    socket.on('loginRpt', function (id, pw) {
-        console.log('loginRpt: ' + id + ' / ' + pw);
-        io.emit('message', 'loginRpt: ' + id);
+    socket.on('loginReq', function (id, pw) {
+        console.log('loginReq: ' + id + ' / ' + pw);
+        io.emit('message', 'loginReq: ' + id);
         AccountInfo.findOne({ id: id, password: pw }, function (error, findAccountInfo) {
             if (findAccountInfo != null) {
-                io.to(socket.id).emit('loginRpt', 'Succeed');
+                //io.to(socket.id).emit('loginRpt', 'Succeed');
+                io.to(socket.id).emit('loginRes', findAccountInfo);
             }
             else {
-                io.emit('loginRpt', 'Fail');
+                io.emit('loginRes', 'Fail');
             }
         });
     });
 });
 
 io.on('connection', function (socket) {
-    socket.on('registerRpt', function (id, pw, name, email, comment) {
+    socket.on('registerRpt', function (id, pw, name, email, comment, phone) {
         console.log('registerRpt: ' + id + pw);
         //1. 이미 등록된 id 있는지 체크
         AccountInfo.findOne({ id: id }, function (error, findAccountInfo) {
             if (findAccountInfo == null) {
                 //2.1 이미 등록된 거 없으면 성공 등록 진행
                 console.log(error);
-                var newAccount = new AccountInfo({ id: id, password: pw, name: name, email: email, comment: comment });
+                var newAccount = new AccountInfo({ id: id, password: pw, name: name, email: email, phone:phone, comment: comment });
                 newAccount.save(function (error, data) {
                     if (error) {
                         console.log(error);

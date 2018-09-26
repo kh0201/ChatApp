@@ -6,6 +6,6 @@
 <div>Comment<input #commentInputBox/></div>
 <div>Phone  <input type="tel" #phoneInputBox/></div>
 
-<button (click)="LoginRpt(idInputBox.value, pwInputBox.value); idInputBox.value=''; pwInputBox.value=''">Login</button>
+<button (click)="LoginReq(idInputBox.value, pwInputBox.value); idInputBox.value=''; pwInputBox.value=''">Login</button>
 <button (click)="RegisterRpt(idInputBox.value, pwInputBox.value, nameInputBox.value, emailInputBox.value, commentInputBox.value, phoneInputBox.value); 
 idInputBox.value=''; pwInputBox.value=''; nameInputBox.value=''; emailInputBox.value=''; commentInputBox.value=''; phoneInputBox.value='';">Register</button>

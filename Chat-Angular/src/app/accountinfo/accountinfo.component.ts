@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { LoginService } from '../login.service';
-import { loginInfo } from '../loginInfo';
+import { LoginResInfo } from '../loginResInfo';
 
 @Component({
   selector: 'app-accountinfo',
@@ -12,14 +12,16 @@ import { loginInfo } from '../loginInfo';
 export class AccountinfoComponent implements OnInit {
 
   constructor(private loginService: LoginService,
-    private location: Location) { }
+    private location: Location
+    ) { }
 
   ngOnInit() {
     this.getInfo();
   }
 
   getInfo(): void {
-    //this.loginService.GetInfo();
+    console.log("getInfo try");
+    this.accountDetail = this.loginService.GetLoginInfo();
   }
 
   goBack(): void {
@@ -27,5 +29,5 @@ export class AccountinfoComponent implements OnInit {
   }
 
 
-  @Input() accountDetail: loginInfo;
+  @Input() accountDetail: LoginResInfo;
 }
