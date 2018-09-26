@@ -1,6 +1,24 @@
 <div>
-  <a routerLink="/chat">Back</a>
+    <button (click)="goBack()">go back</button>
 </div>
-<p>
-  accountinfo works!
-</p>
+<div *ngIf="accountDetail">
+
+  <h2>{{accountDetail.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{accountDetail.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="accountDetail.name" placeholder="name" />
+    </label>
+    <label>phone:
+      <input [(ngModel)]="accountDetail.phone" placeholder="name" />
+    </label>
+    <label>email:
+      <input [(ngModel)]="accountDetail.email" placeholder="name" />
+    </label>
+    <label>comment:
+      <input [(ngModel)]="accountDetail.comment" placeholder="name" />
+    </label>
+    <a *ngFor="let log of accountDetail.log">
+      <h4>{{log}}</h4>
+    </a>
+  </div>

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { LoginService } from '../login.service';
+import { loginInfo } from '../loginInfo';
 
 @Component({
   selector: 'app-accountinfo',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountinfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService,
+    private location: Location) { }
 
   ngOnInit() {
+    this.getInfo();
   }
 
+  getInfo(): void {
+    //this.loginService.GetInfo();
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+
+  @Input() accountDetail: loginInfo;
 }
