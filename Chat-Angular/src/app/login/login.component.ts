@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { LoginService } from '../login.service';
-import { LoginResInfo } from '../LoginResInfo';
 
 @Component({
 	selector: 'app-login',
@@ -12,7 +11,7 @@ export class LoginComponent implements OnInit {
 
 	constructor(private login: LoginService, private router: Router) {
 	}
-	loginResInfo: LoginResInfo;
+
 
 	ngOnInit() {
 		this.login.loginMessages_.subscribe(msg => {
