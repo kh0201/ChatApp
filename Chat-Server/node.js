@@ -3,18 +3,17 @@ let http = require('http').Server(app);
 let io = require('socket.io')(http);
 let crypto = require('crypto');
 
-
-
 // mongoose 모듈 가져오기
 var mongoose = require('mongoose');
 // testDB 세팅
-mongoose.connect('mongodb://localhost:27017/testDB');
+mongoose.connect('mongodb://172.17.0.2:27017/testDB');
 // 연결된 testDB 사용
 var db = mongoose.connection;
 // 연결 실패
 db.on('error', function () {
     console.log('Connection Failed!');
 });
+
 // 연결 성공
 db.once('open', function () {
     console.log('Connected!');

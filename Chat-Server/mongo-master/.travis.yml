@@ -1,0 +1,32 @@
+language: bash
+services: docker
+
+env:
+  - VERSION=4.1
+  - VERSION=4.0
+  - VERSION=3.6
+  - VERSION=3.4
+  - VERSION=3.2
+
+install:
+  - git clone https://github.com/docker-library/official-images.git ~/official-images
+
+before_script:
+  - env | sort
+  - wget -qO- 'https://github.com/tianon/pgp-happy-eyeballs/raw/master/hack-my-builds.sh' | bash
+  - cd "$VERSION"
+  - image="mongo:$VERSION"
+
+script:
+  - |
+    (
+      set -Eeuo pipefail
+      set -x
+      docker build -t "$image" .
+      ~/official-images/test/run.sh "$image"
+    )
+
+after_script:
+  - docker images
+
+# vim:set et ts=2 sw=2:
