@@ -8,3 +8,11 @@
 </nav>  -->
 <router-outlet></router-outlet>
 <!--<app-login></app-login>-->
+
+<div [@openClose]="isOpen ? 'open' : 'closed'" class="app-container">
+  <p>animation check {{ isOpen ? 'Open' : 'Closed' }}!</p>
+</div>
+
+<div>
+    <button class="btn btn-default" (click)="click()">click</button>
+</div>

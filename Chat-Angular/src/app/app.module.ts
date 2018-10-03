@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatService } from './chat.service';
 import { LoginService } from './login.service';
 import { WebSocketService } from './web-socket.service';
@@ -23,7 +24,8 @@ import { AccountinfoComponent } from './accountinfo/accountinfo.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ApproutingModule
+    ApproutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ChatService,
